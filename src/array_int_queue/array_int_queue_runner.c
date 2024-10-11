@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#include "lib/array-queue/array-queue.h"
+#include "array_int_queue.h"
 
 void determine_exit_status(int code) {
   if (code < 0) {
@@ -13,7 +13,7 @@ void queue_traverse(int data) {
   printf("%d ", data);
 }
 
-int main(void) {
+int array_int_queue_runner(void) {
   ArrayIntQueue* queue = array_int_queue_create(10);
 
   bool is_empty = array_int_queue_is_empty(queue);

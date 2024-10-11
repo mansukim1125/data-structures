@@ -6,7 +6,7 @@
 
 #include <stdlib.h>
 
-CharStack* create_stack(const int size) {
+CharStack* char_stack_create_stack(const int size) {
   CharStack* new_stack = (CharStack*) malloc(sizeof(CharStack));
 
   new_stack->top = -1;
@@ -16,16 +16,16 @@ CharStack* create_stack(const int size) {
   return new_stack;
 }
 
-bool is_full(const CharStack* s) {
+bool char_stack_is_full(const CharStack* s) {
   return s->top >= s->size - 1;
 }
 
-bool is_empty(const CharStack* s) {
+bool char_stack_is_empty(const CharStack* s) {
   return s->top == -1;
 }
 
-int push(CharStack* s, const char data) {
-  if (is_full(s)) {
+int char_stack_push(CharStack* s, const char data) {
+  if (char_stack_is_full(s)) {
     return -1;
   }
 
@@ -34,15 +34,15 @@ int push(CharStack* s, const char data) {
   return 0;
 }
 
-char pop(CharStack* s) {
-  if (is_empty(s)) {
+char char_stack_pop(CharStack* s) {
+  if (char_stack_is_empty(s)) {
     return -1;
   }
 
   return s->data[s->top--];
 }
 
-void traverse(const CharStack* s, void (*cb) (char data)) {
+void char_stack_traverse(const CharStack* s, void (*cb) (char data)) {
   int current_size = s->top + 1;
   char* data = s->data;
 
