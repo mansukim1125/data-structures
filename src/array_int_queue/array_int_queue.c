@@ -2,7 +2,7 @@
 // Created by joonseok kim on 2024. 10. 11..
 //
 
-#include "array-queue.h"
+#include "array_int_queue.h"
 
 #include <stdlib.h>
 

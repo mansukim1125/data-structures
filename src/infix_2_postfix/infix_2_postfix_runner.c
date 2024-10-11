@@ -3,8 +3,8 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "lib/char_stack/char_stack.h"
-#include "lib/double_stack/double_stack.h"
+#include "../char_stack/char_stack.h"
+#include "../double_stack/double_stack.h"
 
 char* allocate_str(const int length) {
   return (char*) malloc(sizeof(char) * length);
@@ -45,7 +45,7 @@ char* infix_to_postfix(char* infix, unsigned long length) {
 
   char* postfix = (char*) malloc(sizeof(char) * length);
 
-  CharStack* stack = create_stack((int) length);
+  CharStack* stack = char_stack_create_stack((int) length);
 
   int postfix_i = 0;
 
@@ -57,27 +57,27 @@ char* infix_to_postfix(char* infix, unsigned long length) {
       // 연산자인 경우
       if (infix[i] == ')') {
         // 닫는 괄호일 경우 여는 괄호가 나올 때까지 Pop & postfix 추가 (여는 괄호는 추가하지 않는다.)
-        while (!is_empty(stack)) {
-          char popped = pop(stack);
+        while (!char_stack_is_empty(stack)) {
+          char popped = char_stack_pop(stack);
           if (popped == '(') break;
           postfix[postfix_i++] = popped;
         };
       } else if (infix[i] == '(') {
         // 여는 괄호일 경우 Stack 에 그냥 추가한다.
-        push(stack, infix[i]);
+        char_stack_push(stack, infix[i]);
       } else {
         // 그 외 일반 연산자일 경우 Stack 에 집어 넣으려는 연산자 우선순위 <= Stack Top 연산자 우선순위 일 때 > 이 될 때까지 Pop & postfix 추가
-        while (!is_empty(stack) && precedence(infix[i]) <= precedence(stack->data[stack->top])) {
-          char popped = pop(stack);
+        while (!char_stack_is_empty(stack) && precedence(infix[i]) <= precedence(stack->data[stack->top])) {
+          char popped = char_stack_pop(stack);
           postfix[postfix_i++] = popped;
         }
-        push(stack, infix[i]);
+        char_stack_push(stack, infix[i]);
       }
     }
   }
 
-  while (!is_empty(stack)) {
-    postfix[postfix_i++] = pop(stack);
+  while (!char_stack_is_empty(stack)) {
+    postfix[postfix_i++] = char_stack_pop(stack);
   }
   postfix[postfix_i] = '\0';
 
@@ -119,7 +119,7 @@ void eval_postfix(const char* postfix, const unsigned long length, double* resul
   *result = double_stack_pop(operands);
 }
 
-int main(void) {
+int infix_2_postfix_runner(void) {
   // input: 4+(5-2)*7/8
   // output: 452-7*8/+
 
