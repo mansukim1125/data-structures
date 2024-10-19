@@ -5,7 +5,7 @@ set(CMAKE_C_STANDARD 11)
 
 include_directories(src/array_int_queue)
 include_directories(src/char_stack)
-include_directories(src/circular_queue)
+include_directories(src/circular_int_queue)
 include_directories(src/double_stack)
 include_directories(src/infix_2_postfix)
 include_directories(src/int_stack)
@@ -25,4 +25,8 @@ add_executable(data_structures
         src/int_stack/int_stack.h
         src/int_stack/int_stack_runner.c
         src/int_stack/int_stack_runner.h
-    main.c)
+    main.c
+        src/circular_int_queue/circular_int_queue.h
+        src/circular_int_queue/circular_int_queue.c
+        src/circular_int_queue/circular_int_queue_runner.h
+        src/circular_int_queue/circular_int_queue_runner.c)
