@@ -27,4 +27,6 @@ add_executable(data_structures
         src/int_stack/int_stack_runner.h
     main.c
         src/circular_int_queue/circular_int_queue.h
-        src/circular_int_queue/circular_int_queue.c)
+        src/circular_int_queue/circular_int_queue.c
+        src/circular_int_queue/circular_int_queue_runner.h
+        src/circular_int_queue/circular_int_queue_runner.c)
